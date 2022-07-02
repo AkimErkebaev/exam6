@@ -6,7 +6,7 @@
     </li>
 {% endblock %}
 {% block content %}
-    <h1>Статьи</h1>
+    <h1>Гости</h1>
     <div class="row">
         {% for guest in guests %}
             <div class="col-12 col-md-6 col-lg-4">
@@ -15,7 +15,36 @@
                         <h5 class="card-title">{{ guest.author }} ({{ guest.email }})</h5>
                         <p>{{ guest.text }}</p>
                         <a href="{% url "update_guest" guest.pk %}" class="card-link">Изменить</a>
-                        <a href="{% url "delete_guest" guest.pk %}" class="card-link">Удалить</a>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#guestDeleteModal">
+                                Удалить
+                            </button>
+                        </li>
+                        <div class="modal fade" id="guestDeleteModal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="guestDeleteModal">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Вы уверены что хотите удалить гостя? {{ guest.author }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <form action="{% url "delete_guest" guest.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit">Да</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
