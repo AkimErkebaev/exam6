@@ -36,7 +36,6 @@ def update_guest(request, pk):
             "author": guest.author,
             "email": guest.email,
             "text": guest.text,
-            "status": guest.status,
         })
         return render(request, "update.html", {"form": form})
     else:
@@ -45,10 +44,9 @@ def update_guest(request, pk):
             guest.name = form.cleaned_data.get("name")
             guest.email = form.cleaned_data.get("email")
             guest.text = form.cleaned_data.get("text")
-            guest.status = form.cleaned_data.get("status")
 
             guest.save()
-            return redirect("index", pk=guest.pk)
+            return redirect("index")
         return render(request, "update.html", {"form": form})
 
 

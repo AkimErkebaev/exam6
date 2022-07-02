@@ -14,7 +14,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ guest.author }} ({{ guest.email }})</h5>
                         <p>{{ guest.text }}</p>
-                        <a href="{% url "update_guest_view" article.pk %}" class="card-link">Изменить</a>
+                        <a href="{% url "update_guest" guest.pk %}" class="card-link">Изменить</a>
+                        <a href="{% url "delete_guest" guest.pk %}" class="card-link">Удалить</a>
                     </div>
                 </div>
             </div>
