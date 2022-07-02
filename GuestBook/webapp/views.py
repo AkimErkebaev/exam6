@@ -9,7 +9,7 @@ from webapp.validate import guest_validate
 
 
 def index_view(request):
-    guests = Guest.objects.order_by("-updated_at")
+    guests = Guest.objects.order_by("-created_at")
     context = {"guests": guests}
     return render(request, "index.html", context)
 
@@ -24,9 +24,8 @@ def create_guest(request):
             author = form.cleaned_data.get("author")
             email = form.cleaned_data.get("email")
             text = form.cleaned_data.get("text")
-            status = form.cleaned_data.get("status")
-            new_article = Guest.objects.create(email=email, author=author, text=text, status=status)
-            return redirect("article_view", pk=new_article.pk)
+            new_guest = Guest.objects.create(email=email, author=author, text=text)
+            return redirect("index")
         return render(request, "create.html", {"form": form})
 
 
