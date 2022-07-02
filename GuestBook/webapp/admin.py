@@ -4,7 +4,7 @@ from django.contrib import admin
 from webapp.models import Guest
 
 
-class TaskAdmin(admin.ModelAdmin):
+class GuestAdmin(admin.ModelAdmin):
     list_display = ['id', 'text', 'status', 'created_at', 'author']
     list_display_links = ['author']
     list_filter = ['created_at']
@@ -13,4 +13,4 @@ class TaskAdmin(admin.ModelAdmin):
     readonly_fields = []
 
 
-admin.site.register(Guest, TaskAdmin)
+admin.site.register(Guest, GuestAdmin)

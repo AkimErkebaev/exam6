@@ -6,7 +6,7 @@ status_choices = [('active', 'Активно'), ('blocked', 'Заблокиро�
 
 class Guest(models.Model):
     author = models.CharField(max_length=50, null=False, blank=False, default="NoName", verbose_name="Автор")
-    email = models.EmailField(max_length=50, null=False, blank=False, default="NoEmail", verbose_name="Мэйл")
+    email = models.EmailField(max_length=50, null=False, blank=False, default="mail.ru", verbose_name="Мэйл")
     text = models.TextField(max_length=3000, null=False, blank=False, verbose_name="Текст")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
